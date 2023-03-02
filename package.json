@@ -4,7 +4,7 @@
   "description": "React Webpack Typescript",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.config.js",
-    "build": "webpack --mode production"
+    "build": "webpack --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
     "core-js": "^3.29.0",
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
