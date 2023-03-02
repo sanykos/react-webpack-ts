@@ -1,60 +1,60 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { HotModuleReplacementPlugin } = require("webpack");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { HotModuleReplacementPlugin } = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    app: path.join(__dirname, "src", "index.tsx"),
+    app: path.join(__dirname, 'src', 'index.tsx'),
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, "dist"),
+      directory: path.resolve(__dirname, 'dist'),
     },
     historyApiFallback: true,
     port: 4000,
     open: true,
     hot: true,
   },
-  target: "web",
+  target: 'web',
   resolve: {
-    extensions: [".ts", ".tsx", ".js", "*"],
+    extensions: ['.ts', '.tsx', '.js', '*'],
   },
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/i,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
             ],
           },
         },
-        exclude: "/node_modules/",
+        exclude: '/node_modules/',
       },
     ],
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "./", "index.html"),
+      template: path.join(__dirname, './', 'index.html'),
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
     new ESLintPlugin({
-      extensions: ["js", "jsx", "ts", "tsx"],
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
     new HotModuleReplacementPlugin(),
   ],
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
 };
